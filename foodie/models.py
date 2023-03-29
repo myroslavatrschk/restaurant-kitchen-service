@@ -21,10 +21,11 @@ class Dish(models.Model):
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField()
+    years_of_experience = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ["username"]
+        verbose_name = "Cook"
+        verbose_name_plural = "Cooks"
 
 
 class DishType(models.Model):
