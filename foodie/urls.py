@@ -12,7 +12,7 @@ from foodie.views import (
     DishTypeListView,
     DishTypeCreateView,
     DishTypeUpdateView,
-    DishTypeDeleteView,
+    DishTypeDeleteView, CookCreateView, CookUpdateView, CookDeleteView, assign_delete_cook,
 )
 
 urlpatterns = [
@@ -36,6 +36,9 @@ urlpatterns = [
     ),
     path("cooks/", CookListView.as_view(), name="cooks"),
     path("cooks/<int:pk>", CookDetailView.as_view(), name="cook-detail"),
+    path("cooks/create", CookCreateView.as_view(), name="cook-create"),
+    path("cooks/<int:pk>/update", CookUpdateView.as_view(), name="cook-update"),
+    path("cooks/<int:pk>/delete", CookDeleteView.as_view(), name="cook-delete"),
     path("dish-types/", DishTypeListView.as_view(), name="dish-type-list"),
     path(
         "dish-types/create",
@@ -51,6 +54,11 @@ urlpatterns = [
         "dish-types/<int:pk>/delete",
         DishTypeDeleteView.as_view(),
         name="dish-type-delete"
+    ),
+    path(
+        "assign-delete-cook/<int:pk>",
+        assign_delete_cook,
+        name="assign-delete-cook"
     )
 ]
 

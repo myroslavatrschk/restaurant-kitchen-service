@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>
+  <h1>
     <strong>{{ cook.first_name }} {{ cook.last_name }}</strong>
-  </p>
+    <a href="{% url 'foodie:cook-delete' pk=cook.id %}" class="btn btn-danger link-to-page">Delete</a>
+    <a href="{% url 'foodie:cook-update' pk=cook.id %}" class="btn btn-primary link-to-page">Update</a>
+  </h1>
 
   {% for dish in cook.dishes.all %}
     <hr>

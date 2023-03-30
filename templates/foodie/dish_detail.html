@@ -6,6 +6,11 @@
   </p>
 
   <h1>Cooks</h1>
+    {% if user in dish.cooks.all %}
+      <a class="btn btn-danger" href="{% url 'foodie:assign-delete-cook' pk=dish.id %}">Remove me as a cook</a>
+    {% else %}
+      <a class="btn btn-primary" href="{% url 'foodie:assign-delete-cook' pk=dish.id %}">Add me as a cook</a>
+    {% endif %}
   <hr>
   <ul>
   {% for cook in dish.cooks.all %}

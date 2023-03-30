@@ -2,6 +2,7 @@
 
 {% block content %}
   <h1>Cook list</h1>
+    <a href="{% url 'foodie:cook-create' %}" class="btn btn-primary link-to-page">Create</a>
 
   {% if cook_list %}
     <ul>

@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Delete dish type?</h1>
-  <p>Are you sure you want to delete dish type?</p>
-  <form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
+  <h1>Delete manufacturer</h1>
+  <p>Are you sure, you want to delete {{ dishtype }}?</p>
 
-    <input class="btn btn-primary" type="Submit" value="Submit">
-    <a class="btn btn-primary" href="{% url 'foodie:dishtype-list' pk=dish.id %}">Cancel</a>
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+    <a href="{% url 'foodie:dish-type-list' %}" class="btn btn-primary">Cancel</a>
   </form>
 {% endblock %}
