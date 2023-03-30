@@ -1,4 +1,10 @@
-<ul>
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <h3>User: <a href="{% url 'foodie:cook-detail' pk=user.id %}">{{ user.get_username }}</a></h3>
+    <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <a type="button" class="btn btn-primary" href="{% url 'login' %}">Login</a>
+  {% endif %}
   <li><a href="{% url 'foodie:index' %}">Home page</a></li>
   <li><a href="{% url 'foodie:cooks' %}">Cooks</a></li>
   <li><a href="{% url 'foodie:dishes' %}">Dishes</a></li>

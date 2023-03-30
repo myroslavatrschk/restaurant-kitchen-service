@@ -28,9 +28,6 @@ class Cook(AbstractUser):
         verbose_name = "Cook"
         verbose_name_plural = "Cooks"
 
-    def get_absolute_url(self):
-        return reverse("cook_detail", kwargs={"pk": self.pk})
-
 
 class DishType(models.Model):
     name = models.CharField(max_length=255)
