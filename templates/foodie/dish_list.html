@@ -2,6 +2,7 @@
 
 {% block content %}
   <h1>Dish list</h1>
+  <h3><a href="{% url 'foodie:dish-create' %}">Create</a></h3>
 
   {% if dish_list %}
     <ul>

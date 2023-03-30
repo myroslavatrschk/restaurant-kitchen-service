@@ -12,5 +12,6 @@
     <li>{{ cook.first_name }} {{ cook.last_name }}</li>
   {% endfor %}
   </ul>
-
+  <a class="btn btn-primary" href="{% url 'foodie:dish-update' pk=dish.id %}">Update</a>
+  <a class="btn btn-danger" href="{% url 'foodie:dish-delete' pk=dish.id %}">Delete</a>
 {% endblock %}
