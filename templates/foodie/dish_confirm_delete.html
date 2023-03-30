@@ -8,7 +8,7 @@
     {% csrf_token %}
     {{ form|crispy }}
 
-    <input class="btn btn-primary" type="Submit" value="Submit">
+    <input class="btn btn-danger" type="Submit" value="Delete">
     <a class="btn btn-primary" href="{% url 'foodie:dish-detail' pk=dish.id %}">Cancel</a>
   </form>
 {% endblock %}

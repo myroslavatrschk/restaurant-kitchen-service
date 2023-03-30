@@ -1,13 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load crispy_forms_filters %}
 
 {% block content %}
   <h1>Delete cook?</h1>
-  <form action="" method="post">
+  <p>Are you sure you want to delete cook?</p>
+  <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
 
-    <input type="submit" value="Yes" class="btn btn-danger">
-    <a href="{% url 'foodie:cook-detail' pk=cook.id %}" class="btn btn-primary">Cancel</a>
+    <input class="btn btn-danger" type="Submit" value="Delete">
+    <a class="btn btn-primary" href="{% url 'foodie:cook-detail' pk=cook.id %}">Cancel</a>
   </form>
 {% endblock %}
