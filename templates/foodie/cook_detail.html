@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>
+    <strong>{{ cook.first_name }} {{ cook.last_name }}</strong>
+  </p>
+
+  {% for dish in cook.dishes.all %}
+    <hr>
+    <p>
+      <strong>Dish:</strong>{{ dish.name }}
+    </p>
+
+    {% empty %}
+    <p>This cook doesn't cook any dish.</p>
+  {% endfor %}
+{% endblock %}
