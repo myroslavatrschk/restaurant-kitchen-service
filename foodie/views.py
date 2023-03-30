@@ -26,7 +26,7 @@ def index(request):
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "foodie/dish_type_list.html"
+    template_name = "foodie/dishtype_list.html"
     queryset = DishType.objects.order_by("name")
     paginate_by = 10
 
