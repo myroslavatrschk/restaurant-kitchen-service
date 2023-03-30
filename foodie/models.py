@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class Dish(models.Model):
@@ -26,6 +27,9 @@ class Cook(AbstractUser):
     class Meta:
         verbose_name = "Cook"
         verbose_name_plural = "Cooks"
+
+    def get_absolute_url(self):
+        return reverse("cook_detail", kwargs={"pk": self.pk})
 
 
 class DishType(models.Model):
