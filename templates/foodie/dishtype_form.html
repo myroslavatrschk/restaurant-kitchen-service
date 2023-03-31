@@ -2,13 +2,19 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update,Create" }} dish type.</h1>
+  <h1 class="mb-4">{{ object|yesno:"Update,Create" }} dish type</h1>
 
+  <div class="card">
+    <div class="card-body">
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
 
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
+        <div class="form-group mt-4">
+          <input type="submit" value="Submit" class="btn btn-primary">
+          <a href="{% url 'foodie:dish-type-list' %}" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

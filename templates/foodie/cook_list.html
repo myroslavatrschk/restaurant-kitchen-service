@@ -1,19 +1,47 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Cook list</h1>
-    <a href="{% url 'foodie:cook-create' %}" class="btn btn-primary link-to-page">Create</a>
-
-  {% if cook_list %}
-    <ul>
-      {% for cook in cook_list %}
-        <li>
-          <a href="{% url 'foodie:cook-detail' pk=cook.id %}">{{ cook.username }}</a>
-          ({{ cook.first_name }} {{ cook.last_name }})
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no cooks</p>
-  {% endif %}
+  <div class="container">
+    <h1>Cook List</h1>
+    <div class="d-flex justify-content-between mb-3">
+      <a href="{% url 'foodie:cook-create' %}" class="btn btn-primary">Create</a>
+      <form action="" method="get" class="form-inline">
+        {{ search_form|crispy }}
+        <input class="btn btn-secondary" type="submit" value="🔎">
+      </form>
+    </div>
+    {% if cook_list %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cook in cook_list %}
+            <tr>
+              <td>{{ cook.id }}</td>
+              <td><a href="{% url 'foodie:cook-detail' pk=cook.id %}">{{ cook.username }}</td>
+              <td>
+                <a href="{% url 'foodie:cook-update' pk=cook.id %}" class="btn btn-warning btn-sm">
+                  Update
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'foodie:cook-delete' pk=cook.id %}" class="btn btn-danger btn-sm">
+                  Delete
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No cooks found.</p>
+    {% endif %}
+  </div>
 {% endblock %}

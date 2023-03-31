@@ -1,35 +1,47 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Dish type list</h1>
-  <h3><a href="{% url 'foodie:dish-type-create' %}" class="btn btn-primary link-to-page">Create</a></h3>
-
-  {% if dish_type_list %}
-    <table class="table">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      {% for dish_type in dish_type_list %}
-        <tr>
-          <td>
-            {{ dish_type.id }}
-          </td>
-          <td>
-            {{ dish_type.name }}
-          </td>
-          <td>
-            <a href="{% url 'foodie:dish-type-update' pk=dish_type.id %}">Update</a>
-          </td>
-          <td>
-            <a href="{% url 'foodie:dish-type-delete' pk=dish_type.id %}">Delete</a>
-          </td>
-        </tr>
-      {% endfor %}
-    </table>
-  {% else %}
-    <p>There are no dish types.</p>
-  {% endif %}
+  <div class="container">
+    <h1>Dish Type List</h1>
+    <div class="d-flex justify-content-between mb-3">
+      <a href="{% url 'foodie:dish-type-create' %}" class="btn btn-primary">Create</a>
+      <form action="" method="get" class="form-inline">
+        {{ search_form|crispy }}
+        <input class="btn btn-secondary" type="submit" value="🔎">
+      </form>
+    </div>
+    {% if dish_type_list %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dish_type in dish_type_list %}
+            <tr>
+              <td>{{ dish_type.id }}</td>
+              <td>{{ dish_type.name }}</td>
+              <td>
+                <a href="{% url 'foodie:dish-type-update' pk=dish_type.id %}" class="btn btn-warning btn-sm">
+                  Update
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'foodie:dish-type-delete' pk=dish_type.id %}" class="btn btn-danger btn-sm">
+                  Delete
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No dish types found.</p>
+    {% endif %}
+  </div>
 {% endblock %}

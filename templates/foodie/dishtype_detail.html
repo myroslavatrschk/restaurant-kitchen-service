@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>
-    <strong>{{ dish_type.name }}</strong>
-  </p>
-
-  {% for dish in dish_type.dishes.all %}
-    <hr>
-    <p>
-      <strong>Dish name:</strong>{{ dish.name }}
-    </p>
-
-    {% empty %}
-    <p>This dish type doesn't have any dish.</p>
-  {% endfor %}
+  <div class="card mb-4">
+    <div class="card-header">
+      <h1 class="mb-0">{{ dish_type.name }}</h1>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for dish in dish_type.dishes.all %}
+        <li class="list-group-item">{{ dish.name }}</li>
+      {% empty %}
+        <li class="list-group-item">This dish type doesn't have any dish.</li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
