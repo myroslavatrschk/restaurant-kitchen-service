@@ -96,13 +96,13 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = DishForm
+    fields = "__all__"
     success_url = reverse_lazy("foodie:dishes")
 
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
-    fields = DishForm
+    fields = "__all__"
     success_url = reverse_lazy("foodie:dishes")
 
 
@@ -164,13 +164,3 @@ def assign_delete_cook(request, pk):
     else:
         dish.cooks.add(user)
     return redirect("foodie:dish-detail", pk)
-
-
-def assign_delete_dish(request, pk):
-    user = request.user
-    cook = Cook.objects.get(pk=pk)
-    if user in cook.dishes.all():
-        cook.dishes.remove(user)
-    else:
-        cook.dishes.add(user)
-    return redirect("foodie:cook-detail", pk)
