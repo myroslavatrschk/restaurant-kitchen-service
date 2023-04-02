@@ -27,7 +27,7 @@
                 <tbody>
                   {% for cook in cook_list %}
                     <tr>
-                      <td><a href="{% url 'foodie:cook-detail' pk=cook.id %}">{{ cook.username }}</td>
+                      <td><a href="{% url 'foodie:cook-detail' pk=cook.id %}">{{ cook.username }} {% if user == cook %} (Me){% endif %}</a></td>
                       <td>
                         <a href="{% url 'foodie:cook-update' pk=cook.id %}" class="btn btn-warning btn-sm">
                           Update
