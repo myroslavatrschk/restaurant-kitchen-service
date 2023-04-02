@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from foodie.forms import CookUpdateForm, CookCreationForm, CookSearchForm, DishSearchForm, DishTypeSearchForm
+from foodie.forms import CookUpdateForm, CookCreationForm, CookSearchForm, DishSearchForm, DishTypeSearchForm, DishForm
 from foodie.models import Dish, DishType, Cook
 
 
@@ -96,13 +96,13 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = "__all__"
+    fields = DishForm
     success_url = reverse_lazy("foodie:dishes")
 
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
-    fields = "__all__"
+    fields = DishForm
     success_url = reverse_lazy("foodie:dishes")
 
 
@@ -164,3 +164,13 @@ def assign_delete_cook(request, pk):
     else:
         dish.cooks.add(user)
     return redirect("foodie:dish-detail", pk)
+
+
+def assign_delete_dish(request, pk):
+    user = request.user
+    cook = Cook.objects.get(pk=pk)
+    if user in cook.dishes.all():
+        cook.dishes.remove(user)
+    else:
+        cook.dishes.add(user)
+    return redirect("foodie:cook-detail", pk)
