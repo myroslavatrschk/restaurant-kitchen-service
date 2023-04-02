@@ -46,7 +46,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
             return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
-        return self.queryset
+        return queryset
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
@@ -80,14 +80,14 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Dish.objects.all().select_related("dish_type")
+        queryset = Dish.objects.all()
         form = DishSearchForm(self.request.GET)
 
         if form.is_valid():
             return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
-        return self.queryset
+        return queryset
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
@@ -131,7 +131,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
             return queryset.filter(
                 username__icontains=form.cleaned_data["username"]
             )
-        return self.queryset
+        return queryset
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
