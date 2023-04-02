@@ -1,9 +1,10 @@
-/* Minimalist Style */
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #F2EDE9;
+  font-family: "Times New Roman", Georgia, Serif, serif;
+  background-image: url("../images/restaurant_background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 a {
@@ -32,25 +33,14 @@ main {
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: bold;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 5px;
+  color: #7D574D;
 }
 
 p {
   margin: 10px 0;
   line-height: 1.5;
-}
-
-button,
-input[type="submit"] {
-  background-color: #A87A5E;
-  color: #FFF;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-button:hover,
-input[type="submit"]:hover {
-  background-color: #7D574D;
 }
 
 ul {
@@ -77,15 +67,4 @@ li {
 .link-to-page {
   float: right;
   margin: 0 2px 0 2px;
-}
-
-.paginator {
-  display: flex;
-  justify-content: center;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.paginator li {
-  margin: 0 5px;
 }

@@ -1,37 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 class="mb-4">
-    <strong>{{ cook.username }}</strong>
-    <a href="{% url 'foodie:cook-delete' pk=cook.id %}" class="btn btn-danger ml-4">Delete</a>
-    <a href="{% url 'foodie:cook-update' pk=cook.id %}" class="btn btn-primary ml-2">Update</a>
-  </h1>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h1 class="mb-4">
+              <strong>{{ cook.username }}</strong>
+              <a href="{% url 'foodie:cook-delete' pk=cook.id %}" class="btn btn-danger ml-4">Delete</a>
+              <a href="{% url 'foodie:cook-update' pk=cook.id %}" class="btn btn-primary ml-2">Update</a>
+            </h1>
 
-  <div class="card mb-4">
-    <div class="card-header">
-      <h3>Details:</h3>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><strong>First name:</strong> {{ cook.first_name }}</li>
-      <li class="list-group-item"><strong>Last name:</strong> {{ cook.last_name }}</li>
-      <li class="list-group-item"><strong>Email:</strong> {{ cook.email }}</li>
-      <li class="list-group-item"><strong>Years of experience:</strong> {{ cook.years_of_experience }}</li>
-    </ul>
-  </div>
+            <div class="card mb-4">
+              <div class="card-header">
+                <h3>Details:</h3>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>First name:</strong> {{ cook.first_name }}</li>
+                <li class="list-group-item"><strong>Last name:</strong> {{ cook.last_name }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ cook.email }}</li>
+                <li class="list-group-item"><strong>Years of experience:</strong> {{ cook.years_of_experience }}</li>
+              </ul>
+            </div>
 
-  {% if cook.dishes.all %}
-    <div class="card mb-4">
-      <div class="card-header">
-        <h3>Dishes:</h3>
+            {% if cook.dishes.all %}
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3>Dishes:</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                  {% for dish in cook.dishes.all %}
+                    <li class="list-group-item">{{ dish.name }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% else %}
+              <p>This cook doesn't cook any dish.</p>
+            {% endif %}
+          </div>
+        </div>
       </div>
-      <ul class="list-group list-group-flush">
-        {% for dish in cook.dishes.all %}
-          <li class="list-group-item">{{ dish.name }}</li>
-        {% endfor %}
-      </ul>
     </div>
-  {% else %}
-    <p>This cook doesn't cook any dish.</p>
-  {% endif %}
+  </div>
 {% endblock %}
 
