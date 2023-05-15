@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+                <h1 class="mb-0">{{ dish.name }}</h1>
+              </div>
+              <div class="card-body">
+                <h2>Cooks</h2>
+                {% if user in dish.cooks.all %}
+                  <a href="{% url 'foodie:assign-delete-cook' pk=dish.id %}" class="btn btn-danger">Remove me as a cook</a>
+                {% else %}
+                  <a href="{% url 'foodie:assign-delete-cook' pk=dish.id %}" class="btn btn-primary">Add me as a cook</a>
+                {% endif %}
+                <hr>
+                <ul class="list-group list-group-flush">
+                  {% for cook in dish.cooks.all %}
+                    <li class="list-group-item">{{ cook.first_name }} {{ cook.last_name }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'foodie:dish-update' pk=dish.id %}" class="btn btn-primary">Update</a>
+                <a href="{% url 'foodie:dish-delete' pk=dish.id %}" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
